@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 #include <list>
 #include <array>
+#include <vector>
 
 class Engine
 {
@@ -24,11 +25,14 @@ public:
         GraphicalCore::UpdateGl();
     }
 
+    static GLfloat bezier_points[4][4][3];
+    std::vector<GLuint> *textures;
+
 private:
     void InitUpdate();
     void EndUpdate();
     void Update();
-    void DrawCube();
+    void InitTextures();
 
 #pragma SINGLETON
 private:

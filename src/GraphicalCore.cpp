@@ -73,20 +73,18 @@ void GraphicalCore::SpecialKeyHandle(int key, int x, int y)
 
 void GraphicalCore::Reshape(int w, int h)
 {
-    auto wf = (GLfloat)w;
-    auto hf = (GLfloat)h;
-
-    glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+    glViewport(0, 0, (GLsizei) w, (GLsizei) h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     if (w <= h)
-        glOrtho (-1.5f, 1.5f, -1.5f * hf / wf,
-                 1.5f * hf / wf, -10.0, 10.0);
+        glOrtho(-4.0, 4.0, -4.0*(GLfloat)h/(GLfloat)w,
+                4.0*(GLfloat)h/(GLfloat)w, -4.0, 4.0);
     else
-        glOrtho (-1.5f * wf / hf,
-                 1.5f * wf / hf, -1.5f, 1.5f, -10.0, 10.0);
+        glOrtho(-4.0*(GLfloat)w/(GLfloat)h,
+                4.0*(GLfloat)w/(GLfloat)h, -4.0, 4.0, -4.0, 4.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    glRotatef(85.0, 1.0, 1.0, 1.0);
 }
 
 GraphicalCore::GraphicalCore() = default;
