@@ -36,3 +36,6 @@ find_package(GLUT REQUIRED)
 include_directories(include/ ${OPENGL_INCLUDE_DIRS} $(SOIL_INCLUDE_PATH) ${GLUT_INCLUDE_DIRS} glm/)
 
 target_link_libraries(assignment4 ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${SOIL_LIBRARY})
+
+configure_file(dog.jpg dog.jpg COPYONLY)
+configure_file(thu.jpg thu.jpg COPYONLY)

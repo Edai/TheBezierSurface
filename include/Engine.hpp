@@ -11,6 +11,8 @@
 #include <array>
 #include <vector>
 
+#define TEXTURES_NAMES "thu.jpg", "dog.jpg"
+
 class Engine
 {
 public:
@@ -25,7 +27,11 @@ public:
         GraphicalCore::UpdateGl();
     }
 
-    static GLfloat bezier_points[4][4][3];
+    static GLfloat bezier_points[5][5][3];
+    static int current_texture;
+    static int ptr[2];
+    static bool grid;
+
     std::vector<GLuint> *textures;
 
 private:
@@ -33,6 +39,7 @@ private:
     void EndUpdate();
     void Update();
     void InitTextures();
+    void InitLights();
 
 #pragma SINGLETON
 private:
