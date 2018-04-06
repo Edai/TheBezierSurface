@@ -55,15 +55,19 @@ void GraphicalCore::SpecialKeyHandle(int key, int x, int y)
     switch (key)
     {
         case GLUT_KEY_UP:
+            Engine::bezier_points[0][0][0] += 0.5f;
             glutPostRedisplay();
             break;
         case GLUT_KEY_DOWN:
+            Engine::bezier_points[0][0][0] -= 0.5f;
             glutPostRedisplay();
             break;
         case GLUT_KEY_LEFT:
+            Engine::bezier_points[0][0][1] -= 0.5f;
             glutPostRedisplay();
             break;
         case GLUT_KEY_RIGHT:
+            Engine::bezier_points[0][0][0] += 0.5f;
             glutPostRedisplay();
             break;
         default:
@@ -73,18 +77,7 @@ void GraphicalCore::SpecialKeyHandle(int key, int x, int y)
 
 void GraphicalCore::Reshape(int w, int h)
 {
-    glViewport(0, 0, (GLsizei) w, (GLsizei) h);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    if (w <= h)
-        glOrtho(-4.0, 4.0, -4.0*(GLfloat)h/(GLfloat)w,
-                4.0*(GLfloat)h/(GLfloat)w, -4.0, 4.0);
-    else
-        glOrtho(-4.0*(GLfloat)w/(GLfloat)h,
-                4.0*(GLfloat)w/(GLfloat)h, -4.0, 4.0, -4.0, 4.0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glRotatef(85.0, 1.0, 1.0, 1.0);
+
 }
 
 GraphicalCore::GraphicalCore() = default;
