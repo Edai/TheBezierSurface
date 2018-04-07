@@ -44,6 +44,9 @@ void GraphicalCore::KeyboardHandle(unsigned char key, int x, int y)
         case 27:
             glutLeaveMainLoop();
             break;
+        case 'h' :
+            Engine::text = !Engine::text;
+            break;
         case '1':
             Engine::current_texture = 0;
             break;

@@ -31,7 +31,7 @@ public:
     static int current_texture;
     static int ptr[2];
     static bool grid;
-
+    static bool text;
     std::vector<GLuint> *textures;
 
 private:
@@ -40,6 +40,8 @@ private:
     void Update();
     void InitTextures();
     void InitLights();
+    void PrintInformation();
+    void RenderBitmapString(float x, float y, void *font, std::string s);
 
 #pragma SINGLETON
 private:
