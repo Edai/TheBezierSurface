@@ -1,11 +1,10 @@
-FUNDAMENTALS OF COMPUTER GRAPHICS -  PROJECT 2 REPORT
+FUNDAMENTALS OF COMPUTER GRAPHICS -  PROJECT 3 REPORT
 
-Author: Valentin KAO <valentin.kao@epitech.eu>
-		张有请 - 2017280242
+Author: Valentin KAO <valentin.kao@epitech.eu> 张有请 - 2017280242
 		
 The purpose of this project is to implement an OpenGl program in which
-multiple stars rotate around a center point and extend to the outer ring.
-The stars must be of different colors.
+there is a textured Bezier surface with 25 control points (5 per lines)
+and you can change the smoothness of the surface;
 
 ---------------------------------------------------------------------------
 VIDEO CAPTURE
@@ -35,15 +34,14 @@ command lines.
 Once the compilated was successful, you can execute the program. 
 Here is the usage of the program.
 
-	./assignment4 [--width=x] [--height=y] [--title=”Assignment 2”]
+	./assignment4 [--width=x] [--height=y] [--title=”Assignment 4]
 	
 ---------------------------------------------------------------------------
 FLAGS – OPTIONS	DESCRIPTION	DEFAULT
 ---------------------------------------------------------------------------
 width, w	Set the width of the window	900
 height, h	Set the height of the window	900
-title, t	Set the title of the window	“Assignment 2”
-
+title, t	Set the title of the window	“Assignment 4”
 
 ---------------------------------------------------------------------------
 SOFTWARE DESIGN
@@ -51,24 +49,43 @@ SOFTWARE DESIGN
 In order to implement future project easily, I define a simple application
 design. Those three classes are singletons avoiding any multiple instances.
 
+Application - Graphical Core - Engine
+
 ---------------------------------------------------------------------------
 ALGORITHM IMPLEMENTED
 ---------------------------------------------------------------------------
-Using the formula to generate an Archimedean Spiral, first, we will store 
-all possible positions into a vector of glm::vec2 in the function 
-Engine::InitStars. Indeed, we compute only once the positions.
 
-The class Star contains a color generated randomly and represented by a 
-glm::vec3; and the current index in the pre-computed positions vector 
-represented by an integer. 50 stars are created and store in a vector of 
-Star. The main update loop of Engine::Update progressively generate the
-stars one by one until 50, and then, it loops on the vector of Star, displays
-the current star and increment its index position. If the index is superior
-to the total number of pre-computed positions, it resets the index to zero:
-the star goes back to the middle of the window.
-This method provides the impression of infinite loop and expansion of the spiral.
+By default, we set 5x5 coordinates of points in an array of GLfloat repre-
+senting the control points in static in the Class Engine.
+Then, we use the functions glMap2f, glMapGrid2f and glEvalMesh2 to display
+the Bezier Surface in the Update function.
+
+The user can modify the positions of the control points and the options 
+of glMap2f to change the smoothness of the Bezier surface.
 
 ---------------------------------------------------------------------------
 FUNCTIONNALITIES
 ---------------------------------------------------------------------------
 By pressing the key ESC or the key Q, you close the program properly.
+By pressing the key H, it hides the help text.
+By pressing 1, the texture applied is the Tsinghua image.
+By pressing 2, the texture applied is the Dog image.
+BY pressing 0, it switches to the grid display or textured display.
+As said previously, the user can navigate into the array of points with the
+arrows of the keyboard, by default, the current point is the (0, 0) point.
+
+By pressing Q, W or E. the user can increase the coordinate x, y or z of
+the point.
+By pressing A, S or D. the user can decrease the coordinate x, y or z of
+the point.
+By pressing R or T, the user can increase the smoothness of u or v.
+By pressing F or G, the user can decrease the smoothness of u or v.
+
+Here is the array :
+      0 1 2 3 4
+    0 x . . . .
+    1 . . . . .
+    2 . . . . .
+    3 . . . . .
+    4 . . . . .
+ 

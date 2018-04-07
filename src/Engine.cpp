@@ -88,7 +88,8 @@ void Engine::PrintInformation()
     Engine::bezier_points[Engine::ptr[0]][Engine::ptr[1]][1] << ", " << \
     Engine::bezier_points[Engine::ptr[0]][Engine::ptr[1]][2] <<   ") "  << std::endl;
     RenderBitmapString(-0.95f, -0.75f, GLUT_BITMAP_TIMES_ROMAN_24, fmt.str()); fmt.str("");
-    fmt << "There is 5x5 control points. Current smoothness (u, v) = (" << Engine::smoothness[0] << ", " << Engine::smoothness[1] << ")";
+    fmt << "There are 5x5 control points. Current smoothness (u, v) = (" << Engine::smoothness[0] << ", " << Engine::smoothness[1] << ")";
+    fmt << "There are 5x5 control points. Current smoothness (u, v) = (" << Engine::smoothness[0] << ", " << Engine::smoothness[1] << ")";
     RenderBitmapString(-0.95f, -0.80f, GLUT_BITMAP_TIMES_ROMAN_24, fmt.str());fmt.str("");
     fmt.str("");
     fmt << "Press Q/A, W/S, E/D to modify respectively the x, y or z values\n";
