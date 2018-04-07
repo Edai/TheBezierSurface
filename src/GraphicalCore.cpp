@@ -44,6 +44,18 @@ void GraphicalCore::KeyboardHandle(unsigned char key, int x, int y)
         case 27:
             glutLeaveMainLoop();
             break;
+        case 'r':
+            Engine::smoothness[0] += 1;
+            break;
+        case 'f':
+            Engine::smoothness[0] -= (Engine::smoothness[0] > 0 ? 1 : 0);
+            break;
+        case 't':
+            Engine::smoothness[1] += 1;
+            break;
+        case 'g':
+            Engine::smoothness[1] -= (Engine::smoothness[1] > 0 ? 1 : 0);
+            break;
         case 'h' :
             Engine::text = !Engine::text;
             break;
@@ -71,10 +83,6 @@ void GraphicalCore::KeyboardHandle(unsigned char key, int x, int y)
         default:
             return;
     }
-    std::cout << "(" << Engine::ptr[0] << ", " << Engine::ptr[1] << ") :" << \
-    Engine::bezier_points[Engine::ptr[0]][Engine::ptr[1]][0] << ", " << \
-    Engine::bezier_points[Engine::ptr[0]][Engine::ptr[1]][1] << ", " << \
-    Engine::bezier_points[Engine::ptr[0]][Engine::ptr[1]][2] << std::endl;
 }
 
 void GraphicalCore::SpecialKeyHandle(int key, int x, int y)

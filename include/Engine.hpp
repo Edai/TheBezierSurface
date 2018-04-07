@@ -30,6 +30,7 @@ public:
     static GLfloat bezier_points[5][5][3];
     static int current_texture;
     static int ptr[2];
+    static int smoothness[2];
     static bool grid;
     static bool text;
     std::vector<GLuint> *textures;

@@ -16,6 +16,7 @@ GLfloat Engine::bezier_points[5][5][3] = {
 };
 
 int Engine::ptr[2] = {0, 0};
+int Engine::smoothness[2] = {3, 15};
 int Engine::current_texture = 0;
 bool Engine::grid = false;
 bool Engine::text = true;
@@ -85,8 +86,10 @@ void Engine::PrintInformation()
     fmt << "You are currently on the control point (" << Engine::ptr[0] << ", " << Engine::ptr[1] << ")" << \
     " with the values (" << Engine::bezier_points[Engine::ptr[0]][Engine::ptr[1]][0] << ", " << \
     Engine::bezier_points[Engine::ptr[0]][Engine::ptr[1]][1] << ", " << \
-    Engine::bezier_points[Engine::ptr[0]][Engine::ptr[1]][2] <<   ") "  << std::endl;;
-    RenderBitmapString(-0.95f, -0.8f, GLUT_BITMAP_TIMES_ROMAN_24, fmt.str());
+    Engine::bezier_points[Engine::ptr[0]][Engine::ptr[1]][2] <<   ") "  << std::endl;
+    RenderBitmapString(-0.95f, -0.75f, GLUT_BITMAP_TIMES_ROMAN_24, fmt.str()); fmt.str("");
+    fmt << "There is 5x5 control points. Current smoothness (u, v) = (" << Engine::smoothness[0] << ", " << Engine::smoothness[1] << ")";
+    RenderBitmapString(-0.95f, -0.80f, GLUT_BITMAP_TIMES_ROMAN_24, fmt.str());fmt.str("");
     fmt.str("");
     fmt << "Press Q/A, W/S, E/D to modify respectively the x, y or z values\n";
     RenderBitmapString(-0.95f, -0.85f, GLUT_BITMAP_TIMES_ROMAN_24, fmt.str());fmt.str("");
@@ -94,7 +97,7 @@ void Engine::PrintInformation()
     fmt << "Press 0 to show the Grid. Press 1 or 2 to change the texture image";
     RenderBitmapString(-0.95f, -0.90f, GLUT_BITMAP_TIMES_ROMAN_24, fmt.str());
     fmt.str("");
-    fmt << "Press H to hide the text";
+    fmt << "Press R/F, T/G to change the smoothness of u and v. Press H to hide the text. ";
     RenderBitmapString(-0.95f, -0.95f, GLUT_BITMAP_TIMES_ROMAN_24, fmt.str());
 }
 
@@ -128,8 +131,8 @@ void Engine::Update()
         glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2,
                 0, 1, 4, 2, &pts[0][0][0]);
     }
-    glMap2f(GL_MAP2_VERTEX_3, 0, 1, 3, 5,
-            0, 1, 15, 5, &bezier_points[0][0][0]);
+    glMap2f(GL_MAP2_VERTEX_3, 0, 1, smoothness[0], 5,
+            0, 1, smoothness[1], 5, &bezier_points[0][0][0]);
     glMapGrid2f(25, 0.0, 1.0, 25, 0.0, 1.0);
     glColor3f(1.0, 1.0, 1.0);
     glEvalMesh2(grid ? GL_LINE : GL_FILL, 0, 25, 0, 25);
